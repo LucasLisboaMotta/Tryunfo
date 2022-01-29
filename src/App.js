@@ -53,10 +53,28 @@ class App extends React.Component {
       cardRare,
       cardTrunfo,
     }];
-
-    console.log(obj);
-
     this.setState({ arrozDeCartaz: [...arrozDeCartaz, obj] });
+  }
+
+  test3 = () => {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+    } = this.state;
+    const strings = [cardName, cardDescription, cardImage, cardRare];
+    const numbers = [cardAttr1, cardAttr2, cardAttr3];
+    const trueString = strings.every((string) => string.length > 0);
+    const trueNumber = numbers.every((number) => {
+      const convertNumber = Number(number);
+      return (convertNumber >= 0) && (convertNumber <= 90);
+    });
+    const sun = numbers.reduce((acc, number) => acc + Number(number), 0);
+    if (sun < 210 && trueString && trueNumber) this.setState({ isSaveButtonDisabled: false })
   }
 
   render() {
