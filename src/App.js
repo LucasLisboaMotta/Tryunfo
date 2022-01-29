@@ -1,6 +1,7 @@
 import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
+import MiniCard from './components/Minicard';
 import './App.css';
 
 class App extends React.Component {
@@ -108,7 +109,7 @@ class App extends React.Component {
     cardAttr3,
     cardRare,
     cardTrunfo,
-  }) => (<Card
+  }) => (<MiniCard
     cardName={ cardName }
     cardDescription={ cardDescription }
     cardAttr1={ cardAttr1 }
@@ -118,7 +119,20 @@ class App extends React.Component {
     cardRare={ cardRare }
     cardTrunfo={ cardTrunfo }
     key={ cardName }
+    onInputChange={ this.test4 }
   />))
+
+  test4 = ({ target: { name } }) => {
+    this.setState(({ arrozDeCartaz, hasTrunfo }) => {
+      const trunfo = {};
+      if (hasTrunfo) {
+        const bool = arrozDeCartaz.find(({ cardName }) => cardName === name).cardTrunfo;
+        trunfo.hasTrunfo = !bool;
+      }
+      trunfo.arrozDeCartaz = arrozDeCartaz.filter(({ cardName }) => cardName !== name);
+      return trunfo;
+    });
+  }
 
   render() {
     const {
