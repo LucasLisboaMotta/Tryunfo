@@ -9,22 +9,49 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: '',
       cardTrunfo: false,
       hasTrunfo: false,
-      isSaveButtonDisabled: false,
+      isSaveButtonDisabled: true,
       arrozDeCartaz: [],
     };
   }
 
   teste1 = ({ target }) => {
+    console.log(target);
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
+
+    this.setState((state) => {
+      const {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+      } = state;
+
+      const strings = [cardName, cardDescription, cardImage, cardRare];
+      const numbers = [cardAttr1, cardAttr2, cardAttr3];
+      const trueString = strings.every((string) => string.length > 0);
+      const trueNumber = numbers.every((number) => {
+        const convertNumber = Number(number);
+        const noventa = 90;
+        return (convertNumber >= 0) && (convertNumber <= noventa);
+      });
+      const sunNumbers = numbers.reduce((acc, number) => acc + Number(number), 0);
+      const duzentos = 210;
+      const bool = !(sunNumbers <= duzentos && trueString && trueNumber);
+      console.log(bool);
+      return { isSaveButtonDisabled: bool };
+    });
   }
 
   teste2 = (event) => {
@@ -63,31 +90,31 @@ class App extends React.Component {
     }));
   }
 
-  test3 = () => {
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-    } = this.state;
+  // test3 = () => {
+  //   const {
+  //     cardName,
+  //     cardDescription,
+  //     cardAttr1,
+  //     cardAttr2,
+  //     cardAttr3,
+  //     cardImage,
+  //     cardRare,
+  //   } = this.state;
 
-    const strings = [cardName, cardDescription, cardImage, cardRare];
-    const numbers = [cardAttr1, cardAttr2, cardAttr3];
-    const trueString = strings.every((string) => string.length > 0);
-    const trueNumber = numbers.every((number) => {
-      const convertNumber = Number(number);
-      const noventa = 90;
-      return (convertNumber >= 0) && (convertNumber <= noventa);
-    });
-    const sunNumbers = numbers.reduce((acc, number) => acc + Number(number), 0);
-    const duzentos = 210;
-    const bool = !(sunNumbers < duzentos && trueString && trueNumber);
-    console.log(bool);
-  //  this.setState({ isSaveButtonDisabled: bool });
-  }
+  //   const strings = [cardName, cardDescription, cardImage, cardRare];
+  //   const numbers = [cardAttr1, cardAttr2, cardAttr3];
+  //   const trueString = strings.every((string) => string.length > 0);
+  //   const trueNumber = numbers.every((number) => {
+  //     const convertNumber = Number(number);
+  //     const noventa = 90;
+  //     return (convertNumber >= 0) && (convertNumber <= noventa);
+  //   });
+  //   const sunNumbers = numbers.reduce((acc, number) => acc + Number(number), 0);
+  //   const duzentos = 210;
+  //   const bool = !(sunNumbers < duzentos && trueString && trueNumber);
+  //   console.log(bool);
+  //   this.setState({ isSaveButtonDisabled: bool });
+  // }
 
   render() {
     const {
@@ -119,7 +146,6 @@ class App extends React.Component {
             isSaveButtonDisabled={ isSaveButtonDisabled }
             onInputChange={ this.teste1 }
             onSaveButtonClick={ this.teste2 }
-            teste={ this.test3 }
           />
           <Card
             cardName={ cardName }
