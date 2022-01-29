@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './Card.css';
 
 class Card extends React.Component {
   handleTrunfo = (trunfo) => {
@@ -19,7 +20,7 @@ class Card extends React.Component {
     } = this.props;
 
     return (
-      <section>
+      <article>
         <h2 data-testid="name-card">{ cardName }</h2>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{ cardDescription }</p>
@@ -28,7 +29,7 @@ class Card extends React.Component {
         <span data-testid="attr3-card">{ cardAttr3 }</span>
         <h3 data-testid="rare-card">{ cardRare }</h3>
         {this.handleTrunfo(cardTrunfo)}
-      </section>
+      </article>
     );
   }
 }
