@@ -56,38 +56,48 @@ class App extends React.Component {
 
   teste2 = (event) => {
     event.preventDefault();
-    const {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
+    this.setState((state) => {
+      const {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+        arrozDeCartaz,
+        hasTrunfo,
+      } = state;
 
-    const obj = {
-      cardName,
-      cardDescription,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardImage,
-      cardRare,
-      cardTrunfo,
-    };
-    this.setState((state) => ({
-      arrozDeCartaz: [...state.arrozDeCartaz, obj],
-      cardName: '',
-      cardDescription: '',
-      cardAttr1: '0',
-      cardAttr2: '0',
-      cardAttr3: '0',
-      cardImage: '',
-      cardRare: '',
-      cardTrunfo: '',
-    }));
+      const obj = {
+        cardName,
+        cardDescription,
+        cardAttr1,
+        cardAttr2,
+        cardAttr3,
+        cardImage,
+        cardRare,
+        cardTrunfo,
+      };
+      let trunfo;
+      if (hasTrunfo) trunfo = true;
+      else trunfo = cardTrunfo;
+
+      return ({
+
+        arrozDeCartaz: [...arrozDeCartaz, obj],
+        cardName: '',
+        cardDescription: '',
+        cardAttr1: '0',
+        cardAttr2: '0',
+        cardAttr3: '0',
+        cardImage: '',
+        cardRare: '',
+        cardTrunfo: '',
+        hasTrunfo: trunfo,
+      });
+    });
   }
 
   // test3 = () => {
