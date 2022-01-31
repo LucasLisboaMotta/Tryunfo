@@ -55,7 +55,6 @@ class App extends React.Component {
       const sunNumbers = numbers.reduce((acc, number) => acc + Number(number), 0);
       const duzentos = 210;
       const bool = !(sunNumbers <= duzentos && trueString && trueNumber);
-      console.log(bool);
       return { isSaveButtonDisabled: bool };
     });
   }
@@ -215,11 +214,11 @@ class App extends React.Component {
             />
             <InputSelectFilter
               onInputChange={ this.teste1 }
-              inputTextFilter={ inputSelectFilter }
+              inputSelectFilter={ inputSelectFilter }
             />
             <InputCheckFilter
               onInputChange={ this.teste1 }
-              inputTextFilter={ inputCheckFilter }
+              inputCheckFilter={ inputCheckFilter }
             />
           </div>
           <section className="bot">

@@ -8,17 +8,20 @@ class InputSelectFilter extends React.Component {
       inputSelectFilter,
     } = this.props;
     return (
-      <select
-        data-testid="rare-filter"
-        onChange={ onInputChange }
-        value={ inputSelectFilter }
-        name="inputSelectFilter"
-      >
-        <option value="todas">Todas</option>
-        <option value="normal">Normal</option>
-        <option value="raro">Raro</option>
-        <option value="muito raro">Muito Raro</option>
-      </select>
+      <label htmlFor="inputSelectFilter">
+        Raridade
+        <select
+          data-testid="rare-filter"
+          onChange={ onInputChange }
+          value={ inputSelectFilter }
+          name="inputSelectFilter"
+        >
+          <option value="todas">Todas</option>
+          <option value="normal">Normal</option>
+          <option value="raro">Raro</option>
+          <option value="muito raro">Muito Raro</option>
+        </select>
+      </label>
     );
   }
 }

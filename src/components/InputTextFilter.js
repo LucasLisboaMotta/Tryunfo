@@ -8,13 +8,16 @@ class InputTextFilter extends React.Component {
       inputTextFilter,
     } = this.props;
     return (
-      <input
-        data-testid="name-filter"
-        type="text"
-        onChange={ onInputChange }
-        value={ inputTextFilter }
-        name="inputTextFilter"
-      />
+      <label htmlFor="inputTextFilter">
+        Nome
+        <input
+          data-testid="name-filter"
+          type="text"
+          onChange={ onInputChange }
+          value={ inputTextFilter }
+          name="inputTextFilter"
+        />
+      </label>
     );
   }
 }

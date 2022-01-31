@@ -8,13 +8,16 @@ class InputCheckFilter extends React.Component {
       inputCheckFilter,
     } = this.props;
     return (
-      <input
-        type="checkbox"
-        data-testid="trunfo-filter"
-        onChange={ onInputChange }
-        value={ inputCheckFilter }
-        name="inputCheckFilter"
-      />
+      <label htmlFor="inputCheckFilter">
+        Super Trunfo
+        <input
+          type="checkbox"
+          data-testid="trunfo-filter"
+          onChange={ onInputChange }
+          value={ inputCheckFilter }
+          name="inputCheckFilter"
+        />
+      </label>
     );
   }
 }

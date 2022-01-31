@@ -58,6 +58,7 @@ class Form extends React.Component {
             data-testid="description-input"
             value={ cardDescription }
             onChange={ onInputChange }
+            maxLength="200"
           />
         </label>
 
@@ -120,7 +121,7 @@ class Form extends React.Component {
           >
             <option value="normal">Normal</option>
             <option value="raro">Raro</option>
-            <option Value="muito raro">Muito Raro</option>
+            <option value="muito raro">Muito Raro</option>
           </select>
         </label>
 
