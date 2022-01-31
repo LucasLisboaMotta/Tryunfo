@@ -1,4 +1,7 @@
 section {
   display: flex;
+}
+
+.top {
   justify-content: space-around;
 }

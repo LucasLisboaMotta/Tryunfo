@@ -2,6 +2,7 @@ import React from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import MiniCard from './components/Minicard';
+import InputTextFilter from './components/InputTextFilter';
 import './App.css';
 
 class App extends React.Component {
@@ -19,11 +20,11 @@ class App extends React.Component {
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       arrozDeCartaz: [],
+      inputTextFilter: '',
     };
   }
 
   teste1 = ({ target }) => {
-    console.log(target);
     const { name } = target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     this.setState({ [name]: value });
@@ -101,26 +102,31 @@ class App extends React.Component {
     });
   }
 
-  test3 = (objs) => objs.map(({ cardName,
-    cardImage,
-    cardDescription,
-    cardAttr1,
-    cardAttr2,
-    cardAttr3,
-    cardRare,
-    cardTrunfo,
-  }) => (<MiniCard
-    cardName={ cardName }
-    cardDescription={ cardDescription }
-    cardAttr1={ cardAttr1 }
-    cardAttr2={ cardAttr2 }
-    cardAttr3={ cardAttr3 }
-    cardImage={ cardImage }
-    cardRare={ cardRare }
-    cardTrunfo={ cardTrunfo }
-    key={ cardName }
-    onInputChange={ this.test4 }
-  />))
+  test3 = (objs) => {
+    const { inputTextFilter } = this.state;
+    const filter = objs.filter(({ cardName }) => cardName.includes(inputTextFilter));
+    const map = filter.map(({ cardName,
+      cardImage,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardRare,
+      cardTrunfo,
+    }) => (<MiniCard
+      cardName={ cardName }
+      cardDescription={ cardDescription }
+      cardAttr1={ cardAttr1 }
+      cardAttr2={ cardAttr2 }
+      cardAttr3={ cardAttr3 }
+      cardImage={ cardImage }
+      cardRare={ cardRare }
+      cardTrunfo={ cardTrunfo }
+      key={ cardName }
+      onInputChange={ this.test4 }
+    />));
+    return map;
+  }
 
   test4 = ({ target: { name } }) => {
     this.setState(({ arrozDeCartaz, hasTrunfo }) => {
@@ -133,6 +139,10 @@ class App extends React.Component {
       return trunfo;
     });
   }
+
+  // test5 = ({ target: { name, value } }) => {
+  //   this.setState({ [name]: value });
+  // }
 
   render() {
     const {
@@ -147,11 +157,12 @@ class App extends React.Component {
       hasTrunfo,
       isSaveButtonDisabled,
       arrozDeCartaz,
+      inputTextFilter,
     } = this.state;
     return (
       <main>
         <h1>Tryunfo</h1>
-        <section>
+        <section className="top">
           <Form
             cardName={ cardName }
             cardDescription={ cardDescription }
@@ -177,9 +188,17 @@ class App extends React.Component {
             cardTrunfo={ cardTrunfo }
           />
         </section>
-        <section>
-          {this.test3(arrozDeCartaz)}
-        </section>
+        <div>
+          <div>
+            <InputTextFilter
+              onInputChange={ this.teste1 }
+              inputTextFilter={ inputTextFilter }
+            />
+          </div>
+          <section className="bot">
+            {this.test3(arrozDeCartaz)}
+          </section>
+        </div>
       </main>
     );
   }
