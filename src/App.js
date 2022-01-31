@@ -3,6 +3,7 @@ import Form from './components/Form';
 import Card from './components/Card';
 import MiniCard from './components/Minicard';
 import InputTextFilter from './components/InputTextFilter';
+import InputSelectFilter from './components/InputSelectFilter';
 import './App.css';
 
 class App extends React.Component {
@@ -15,12 +16,13 @@ class App extends React.Component {
       cardAttr2: '0',
       cardAttr3: '0',
       cardImage: '',
-      cardRare: '',
+      cardRare: 'normal',
       cardTrunfo: false,
       hasTrunfo: false,
       isSaveButtonDisabled: true,
       arrozDeCartaz: [],
       inputTextFilter: '',
+      inputSelectFilter: 'todas',
     };
   }
 
@@ -95,7 +97,7 @@ class App extends React.Component {
         cardAttr2: '0',
         cardAttr3: '0',
         cardImage: '',
-        cardRare: '',
+        cardRare: 'normal',
         cardTrunfo: '',
         hasTrunfo: trunfo,
       });
@@ -103,9 +105,11 @@ class App extends React.Component {
   }
 
   test3 = (objs) => {
-    const { inputTextFilter } = this.state;
-    const filter = objs.filter(({ cardName }) => cardName.includes(inputTextFilter));
-    const map = filter.map(({ cardName,
+    const { inputTextFilter, inputSelectFilter } = this.state;
+    const select = inputSelectFilter === 'todas' ? objs : objs
+      .filter(({ cardRare }) => cardRare === inputSelectFilter);
+    const text = select.filter(({ cardName }) => cardName.includes(inputTextFilter));
+    const map = text.map(({ cardName,
       cardImage,
       cardDescription,
       cardAttr1,
@@ -158,6 +162,7 @@ class App extends React.Component {
       isSaveButtonDisabled,
       arrozDeCartaz,
       inputTextFilter,
+      inputSelectFilter,
     } = this.state;
     return (
       <main>
@@ -193,6 +198,10 @@ class App extends React.Component {
             <InputTextFilter
               onInputChange={ this.teste1 }
               inputTextFilter={ inputTextFilter }
+            />
+            <InputSelectFilter
+              onInputChange={ this.teste1 }
+              inputTextFilter={ inputSelectFilter }
             />
           </div>
           <section className="bot">
