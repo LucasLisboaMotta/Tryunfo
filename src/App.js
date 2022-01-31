@@ -4,6 +4,7 @@ import Card from './components/Card';
 import MiniCard from './components/Minicard';
 import InputTextFilter from './components/InputTextFilter';
 import InputSelectFilter from './components/InputSelectFilter';
+import InputCheckFilter from './components/InputCheckFilter';
 import './App.css';
 
 class App extends React.Component {
@@ -23,6 +24,7 @@ class App extends React.Component {
       arrozDeCartaz: [],
       inputTextFilter: '',
       inputSelectFilter: 'todas',
+      inputCheckFilter: false,
     };
   }
 
@@ -98,14 +100,29 @@ class App extends React.Component {
         cardAttr3: '0',
         cardImage: '',
         cardRare: 'normal',
-        cardTrunfo: '',
+        cardTrunfo: false,
         hasTrunfo: trunfo,
       });
     });
   }
 
   test3 = (objs) => {
-    const { inputTextFilter, inputSelectFilter } = this.state;
+    const { inputTextFilter, inputSelectFilter, inputCheckFilter } = this.state;
+    if (inputCheckFilter) {
+      const check = objs.find(({ cardTrunfo }) => cardTrunfo);
+      if (!check) return;
+      return (<MiniCard
+        cardName={ check.cardName }
+        cardDescription={ check.cardDescription }
+        cardAttr1={ check.cardAttr1 }
+        cardAttr2={ check.cardAttr2 }
+        cardAttr3={ check.cardAttr3 }
+        cardImage={ check.cardImage }
+        cardRare={ check.cardRare }
+        cardTrunfo={ check.cardTrunfo }
+        onInputChange={ this.test4 }
+      />);
+    }
     const select = inputSelectFilter === 'todas' ? objs : objs
       .filter(({ cardRare }) => cardRare === inputSelectFilter);
     const text = select.filter(({ cardName }) => cardName.includes(inputTextFilter));
@@ -144,10 +161,6 @@ class App extends React.Component {
     });
   }
 
-  // test5 = ({ target: { name, value } }) => {
-  //   this.setState({ [name]: value });
-  // }
-
   render() {
     const {
       cardName,
@@ -163,6 +176,7 @@ class App extends React.Component {
       arrozDeCartaz,
       inputTextFilter,
       inputSelectFilter,
+      inputCheckFilter,
     } = this.state;
     return (
       <main>
@@ -202,6 +216,10 @@ class App extends React.Component {
             <InputSelectFilter
               onInputChange={ this.teste1 }
               inputTextFilter={ inputSelectFilter }
+            />
+            <InputCheckFilter
+              onInputChange={ this.teste1 }
+              inputTextFilter={ inputCheckFilter }
             />
           </div>
           <section className="bot">
