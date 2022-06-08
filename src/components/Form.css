@@ -1,14 +1,36 @@
 form {
+  background-color: rgb(155, 155, 245);
   border: blue solid 2px;
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 310px;
 }
 
 label {
+  align-self: end;
   margin: 10px;
 }
 
-textarea {
-  resize: none;
+input {
+  margin-left: 10px;
+}
+
+select {
+  margin-left: 10px;
+  padding-right: 97px;
+}
+
+.formLabel {
+  align-self: center;
+  margin: 2px;
+}
+
+.super {
+  font-size: 14px;
+  margin-bottom: 7px;
+  text-align: center;
+}
+
+button {
+  background-color: rgb(71, 134, 71);
 }

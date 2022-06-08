@@ -5,6 +5,7 @@ import MiniCard from './components/Minicard';
 import InputTextFilter from './components/InputTextFilter';
 import InputSelectFilter from './components/InputSelectFilter';
 import InputCheckFilter from './components/InputCheckFilter';
+import Header from './components/Header';
 import './App.css';
 
 class App extends React.Component {
@@ -178,54 +179,56 @@ class App extends React.Component {
       inputCheckFilter,
     } = this.state;
     return (
-      <main>
-        <h1>Tryunfo</h1>
-        <section className="top">
-          <Form
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            hasTrunfo={ hasTrunfo }
-            cardTrunfo={ cardTrunfo }
-            isSaveButtonDisabled={ isSaveButtonDisabled }
-            onInputChange={ this.teste1 }
-            onSaveButtonClick={ this.teste2 }
-          />
-          <Card
-            cardName={ cardName }
-            cardDescription={ cardDescription }
-            cardAttr1={ cardAttr1 }
-            cardAttr2={ cardAttr2 }
-            cardAttr3={ cardAttr3 }
-            cardImage={ cardImage }
-            cardRare={ cardRare }
-            cardTrunfo={ cardTrunfo }
-          />
-        </section>
-        <div>
-          <div>
-            <InputTextFilter
+      <>
+        <Header />
+        <main>
+          <section className="top">
+            <Form
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              hasTrunfo={ hasTrunfo }
+              cardTrunfo={ cardTrunfo }
+              isSaveButtonDisabled={ isSaveButtonDisabled }
               onInputChange={ this.teste1 }
-              inputTextFilter={ inputTextFilter }
+              onSaveButtonClick={ this.teste2 }
             />
-            <InputSelectFilter
-              onInputChange={ this.teste1 }
-              inputSelectFilter={ inputSelectFilter }
+            <Card
+              cardName={ cardName }
+              cardDescription={ cardDescription }
+              cardAttr1={ cardAttr1 }
+              cardAttr2={ cardAttr2 }
+              cardAttr3={ cardAttr3 }
+              cardImage={ cardImage }
+              cardRare={ cardRare }
+              cardTrunfo={ cardTrunfo }
             />
-            <InputCheckFilter
-              onInputChange={ this.teste1 }
-              inputCheckFilter={ inputCheckFilter }
-            />
-          </div>
-          <section className="bot">
-            {this.test3(arrozDeCartaz)}
           </section>
-        </div>
-      </main>
+          <div>
+            <div>
+              <InputTextFilter
+                onInputChange={ this.teste1 }
+                inputTextFilter={ inputTextFilter }
+              />
+              <InputSelectFilter
+                onInputChange={ this.teste1 }
+                inputSelectFilter={ inputSelectFilter }
+              />
+              <InputCheckFilter
+                onInputChange={ this.teste1 }
+                inputCheckFilter={ inputCheckFilter }
+              />
+            </div>
+            <section className="bot">
+              {this.test3(arrozDeCartaz)}
+            </section>
+          </div>
+        </main>
+      </>
     );
   }
 }

@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 class Form extends React.Component {
   handleTrunfo = (hasTrunfo, cardTrunfo, onInputChange) => {
-    if (hasTrunfo) return <span>Você já tem um Super Trunfo em seu baralho</span>;
+    if (hasTrunfo) {
+      return <span className="super">Você já tem um Super Trunfo em seu baralho</span>;
+    }
     return (
-      <label htmlFor="cardTrunfo">
-        Super Trunfo
+      <label htmlFor="cardTrunfo" className="formLabel">
+        Super Trunfo:
         <input
           id="cardTrunfo"
           name="cardTrunfo"
@@ -38,9 +40,10 @@ class Form extends React.Component {
     return (
       <form>
 
-        <label htmlFor="name">
-          Nome
+        <label htmlFor="cardName" className="label1">
+          Nome:
           <input
+            className="input1"
             id="cardName"
             name="cardName"
             data-testid="name-input"
@@ -50,23 +53,12 @@ class Form extends React.Component {
           />
         </label>
 
-        <label htmlFor="cardDescription">
-          Descrição
-          <textarea
-            id="cardDescription"
-            name="cardDescription"
-            data-testid="description-input"
-            value={ cardDescription }
-            onChange={ onInputChange }
-            maxLength="200"
-          />
-        </label>
-
-        <label htmlFor="cardAttr1">
-          Força
+        <label htmlFor="cardAttr1" id="label2">
+          Força:
           <input
             id="cardAttr1"
             name="cardAttr1"
+            className="input3"
             data-testid="attr1-input"
             type="number"
             value={ cardAttr1 }
@@ -74,11 +66,12 @@ class Form extends React.Component {
           />
         </label>
 
-        <label htmlFor="cardAttr2">
-          Agilidade
+        <label htmlFor="cardAttr2" id="label3">
+          Agilidade:
           <input
             id="cardAttr2"
             name="cardAttr2"
+            className="input4"
             data-testid="attr2-input"
             type="number"
             value={ cardAttr2 }
@@ -87,9 +80,10 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardAttr3">
-          Inteligencia
+          Inteligencia:
           <input
             id="cardAttr3"
+            className="input5"
             name="cardAttr3"
             data-testid="attr3-input"
             type="number"
@@ -99,7 +93,7 @@ class Form extends React.Component {
         </label>
 
         <label htmlFor="cardImage">
-          Imagem
+          Imagem:
           <input
             id="cardImage"
             name="cardImage"
@@ -110,8 +104,22 @@ class Form extends React.Component {
           />
         </label>
 
-        <label htmlFor="cadRare">
-          Rarirade
+        <label htmlFor="cardDescription" id="label2">
+          Descrição:
+          <input
+            type="text"
+            className="input2"
+            id="cardDescription"
+            name="cardDescription"
+            data-testid="description-input"
+            value={ cardDescription }
+            onChange={ onInputChange }
+            maxLength="200"
+          />
+        </label>
+
+        <label htmlFor="cadRare" className="label-select">
+          Rarirade:
           <select
             data-testid="rare-input"
             id="cadRare"
